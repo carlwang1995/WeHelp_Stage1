@@ -255,4 +255,21 @@ def get_number(index):
 get_number(1) # print 4
 get_number(5) # print 15
 get_number(10) # print 25
-get_number(30) # print 70   
+get_number(30) # print 70
+
+print("=== Task 5 ===")
+def find(spaces, stat, n):
+    check = float("Inf")
+    finalIndex = 0
+    for i in range(0, len(spaces)):
+        if stat[i] == 1:
+            if spaces[i] - n >= 0 and spaces[i] - n < check:
+                check = spaces[i] - n
+                finalIndex = i
+            elif check == float("Inf"):
+                finalIndex = -1
+    print(finalIndex)
+
+find([3, 1, 5, 4, 3, 2], [0, 1, 0, 1, 1, 1], 2) # print 5
+find([1, 0, 5, 1, 3], [0, 1, 0, 1, 1], 4) # print -1
+find([4, 6, 5, 8], [0, 1, 1, 1], 4) # print 2
