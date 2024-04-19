@@ -1,0 +1,200 @@
+* {
+  font-size: 20px;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  display: flex;
+}
+
+.nav_title,
+.menu a {
+  text-align: center;
+  margin: 10px 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+.menu_icon {
+  display: none;
+}
+
+.menu_icon img {
+  height: 100%;
+  width: 40px;
+}
+
+header {
+  display: flex;
+  width: 100%;
+  height: 250px;
+  align-items: center;
+  justify-content: center;
+  background-color: skyblue;
+}
+
+header p {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 主畫面 */
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.main_content {
+  width: 1200px;
+  justify-content: center;
+  /* background-color: bisque; */
+  margin: 20px;
+}
+
+.small_boxes_model {
+  width: 100%;
+  display: flex;
+}
+
+.small_box {
+  display: flex;
+  align-items: center;
+  width: 380px;
+  height: 50px;
+  margin: 10px;
+  background-color: aquamarine;
+}
+.small_box img {
+  height: 100%;
+  width: 80px;
+  margin-right: 10px;
+}
+
+.small_box_text {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* 設定顯示 3 行 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.big_boxes_model {
+  display: flex;
+}
+
+.big_boxes_model_ipad {
+  display: flex;
+  height: 250px;
+  margin: 10px 0px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  margin: 10px;
+  height: 520px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  margin: 10px;
+  height: 520px;
+}
+
+.big_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 50%;
+  margin-bottom: 20px;
+  background-color: aquamarine;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.text_star {
+  width: 100%;
+  text-align: right;
+  font-weight: bold;
+  font-size: larger;
+  opacity: 0.8;
+  color: rgb(255, 208, 0);
+}
+
+.text_title {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.text_title_text {
+  width: 95%;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* 設定顯示 3 行 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: center;
+}
+.desktop {
+  display: block;
+}
+
+.ipad {
+  display: none;
+}
+
+.phone {
+  display: none;
+}
+
+.sidebar {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  width: 0%;
+  background-color: rgba(255, 255, 255);
+  z-index: 1;
+  position: fixed;
+  top: 0%;
+  right: 0%;
+  transition: 0.2s;
+}
+
+.sidebar button {
+  display: none;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  text-align: right;
+  margin: 10px 20px;
+}
+.sidebar a {
+  padding: 20px;
+  cursor: pointer;
+  text-align: center;
+  color: black;
+  text-decoration: none;
+}

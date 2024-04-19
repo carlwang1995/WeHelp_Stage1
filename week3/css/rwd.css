@@ -1,0 +1,65 @@
+/* ≦1200px */
+@media (max-width: 1200px) {
+  .main_content {
+    width: 90%;
+  }
+
+  .small_boxes_model {
+    flex-wrap: wrap;
+  }
+  .small_box {
+    width: 45%;
+    flex-grow: 1;
+  }
+  .desktop {
+    display: none;
+  }
+  .ipad {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .big_box {
+    flex: 1 65px;
+    height: 100%;
+    margin: 0px 10px;
+  }
+}
+
+/* ≦600px */
+@media (max-width: 600px) {
+  .small_box {
+    width: 100%;
+    flex-grow: initial;
+  }
+  .ipad {
+    display: none;
+  }
+  .phone {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .big_box {
+    flex-basis: auto;
+    flex-grow: initial;
+    height: 250px;
+    margin: 10px;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .menu_icon {
+    display: block;
+    height: 40px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .sidebar {
+    display: flex;
+  }
+}

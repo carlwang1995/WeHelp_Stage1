@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/rwd.css" />
+    <title>WeHelp_第三週作業</title>
+  </head>
+  <body>
+    <div id="sidebar" class="sidebar">
+      <div style="display: flex; justify-content: end; height: 40px">
+        <button id="close_btn" onclick="closemenu()">X</button>
+      </div>
+      <a href="#">Item 1</a>
+      <a href="#">Item 2</a>
+      <a href="#">Item 3</a>
+      <a href="#">Item 4</a>
+    </div>
+    <nav>
+      <div class="nav_title">My Website</div>
+      <div class="menu">
+        <a href="#">Item 1</a>
+        <a href="#">Item 2</a>
+        <a href="#">Item 3</a>
+        <a href="#">Item 4</a>
+      </div>
+      <div id="menu_icon" class="menu_icon" onclick="openmenu()">
+        <img src="./images/menu_icon.png" alt="menu" />
+      </div>
+    </nav>
+
+    <header>
+      <p>Welcome to MyHome</p>
+    </header>
+    <main></main>
+    <script>
+      // sidebar
+      let sidebar = document.querySelector("#sidebar");
+      let closebtn = document.querySelector("#close_btn");
+      function openmenu() {
+        sidebar.style.width = "55%";
+        closebtn.style.display = "block";
+      }
+      function closemenu() {
+        sidebar.style.width = "0%";
+        closebtn.style.display = "none";
+      }
+
+      // Ajax連線，取得資料
+      let url =
+        "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment-1";
+      fetch(url)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          let results = data.data.results;
+
+          // 將景點、圖片網址，分別用一個array裝
+          let spotList = [];
+          let imageList = [];
+          for (i = 0; i < results.length; i++) {
+            let spotName = results[i]["stitle"];
+            let imageUrl = results[i]["filelist"];
+            spotList.push(spotName);
+            imageList.push(imageUrl.toLowerCase().split(".jpg")[0] + ".jpg"); //網址字串轉小寫、取第一個網址
+          }
+
+          //處理畫面
+          let dataCount = 0;
+          let main = document.querySelector("main");
+          let mainContent = document.createElement("div");
+          mainContent.className = "main_content";
+          main.appendChild(mainContent);
+
+          let smallBoxModel = document.createElement("div");
+          smallBoxModel.className = "small_boxes_model";
+          mainContent.appendChild(smallBoxModel);
+          for (i = 0; i < 3; i++) {
+            let smallBox = document.createElement("div");
+            let smallBoxImg = document.createElement("img");
+            let smallBoxText = document.createElement("p");
+            smallBoxModel.appendChild(smallBox);
+            smallBox.className = "small_box";
+
+            smallBox.appendChild(smallBoxImg);
+            smallBoxImg.src = imageList[dataCount];
+
+            smallBox.appendChild(smallBoxText);
+            smallBoxText.className = "small_box_text";
+            smallBoxText.innerText = spotList[dataCount];
+            dataCount += 1;
+          }
+          //電腦版畫面
+          let dataCountForDesktop = dataCount;
+          let desktopModel = document.createElement("div");
+          let bigBixModel = document.createElement("div");
+          mainContent.appendChild(desktopModel);
+          desktopModel.appendChild(bigBixModel);
+          desktopModel.className = "desktop";
+          bigBixModel.className = "big_boxes_model";
+
+          let leftModel = document.createElement("div");
+          bigBixModel.appendChild(leftModel);
+          leftModel.className = "left";
+          for (i = dataCountForDesktop; i <= dataCountForDesktop + 5; i += 5) {
+            let bigBox = document.createElement("div");
+            let bigBoxStar = document.createElement("p");
+            let bigBoxTitle = document.createElement("div");
+            let bigBoxTitleText = document.createElement("p");
+            leftModel.appendChild(bigBox);
+            bigBox.className = "big_box";
+            bigBox.style.backgroundImage = "url(" + imageList[i] + ")";
+            bigBox.appendChild(bigBoxStar);
+            bigBoxStar.className = "text_star";
+            bigBoxStar.innerText = "\u2605";
+            bigBox.appendChild(bigBoxTitle);
+            bigBoxTitle.className = "text_title";
+            bigBoxTitle.appendChild(bigBoxTitleText);
+            bigBoxTitleText.className = "text_title_text";
+            bigBoxTitleText.innerText = spotList[i];
+          }
+          dataCountForDesktop += 1;
+          for (j = 0; j < 4; j++) {
+            let rightModel = document.createElement("div");
+            bigBixModel.appendChild(rightModel);
+            rightModel.className = "right";
+            for (
+              i = dataCountForDesktop;
+              i <= dataCountForDesktop + 5;
+              i += 5
+            ) {
+              let bigBox = document.createElement("div");
+              let bigBoxStar = document.createElement("p");
+              let bigBoxTitle = document.createElement("div");
+              let bigBoxTitleText = document.createElement("p");
+              rightModel.appendChild(bigBox);
+              bigBox.className = "big_box";
+              bigBox.style.backgroundImage = "url(" + imageList[i] + ")";
+              bigBox.appendChild(bigBoxStar);
+              bigBoxStar.className = "text_star";
+              bigBoxStar.innerHTML = "\u2605";
+              bigBox.appendChild(bigBoxTitle);
+              bigBoxTitle.className = "text_title";
+              bigBoxTitle.appendChild(bigBoxTitleText);
+              bigBoxTitleText.className = "text_title_text";
+              bigBoxTitleText.innerText = spotList[i];
+            }
+            dataCountForDesktop += 1;
+          }
+
+          //平板畫面
+          let dataCountForIpad = dataCount;
+          let ipadModel = document.createElement("div");
+          ipadModel.className = "ipad";
+          mainContent.appendChild(ipadModel);
+          for (i = 0; i < 3; i++) {
+            let bigBoxModelIpad = document.createElement("div");
+            ipadModel.appendChild(bigBoxModelIpad);
+            bigBoxModelIpad.className = "big_boxes_model_ipad";
+            if (dataCountForIpad <= 10) {
+              for (j = 0; j < 4; j++) {
+                let bigBox = document.createElement("div");
+                let bigBoxStar = document.createElement("p");
+                let bigBoxTitle = document.createElement("div");
+                let bigBoxTitleText = document.createElement("p");
+                bigBoxModelIpad.appendChild(bigBox);
+                bigBox.className = "big_box";
+                bigBox.style.backgroundImage =
+                  "url(" + imageList[dataCountForIpad] + ")";
+                // bigBox.style.marginBottom = "0px";
+                bigBox.appendChild(bigBoxStar);
+                bigBoxStar.className = "text_star";
+                bigBoxStar.innerText = "\u2605";
+                bigBox.appendChild(bigBoxTitle);
+                bigBoxTitle.className = "text_title";
+                bigBoxTitle.appendChild(bigBoxTitleText);
+                bigBoxTitleText.className = "text_title_text";
+                bigBoxTitleText.innerText = spotList[dataCountForIpad];
+                dataCountForIpad += 1;
+              }
+            } else if (dataCountForIpad > 10) {
+              for (k = 0; k < 2; k++) {
+                let bigBox = document.createElement("div");
+                let bigBoxStar = document.createElement("p");
+                let bigBoxTitle = document.createElement("div");
+                let bigBoxTitleText = document.createElement("p");
+                bigBoxModelIpad.appendChild(bigBox);
+                bigBox.className = "big_box";
+                bigBox.style.backgroundImage =
+                  "url(" + imageList[dataCountForIpad] + ")";
+                bigBox.appendChild(bigBoxStar);
+                bigBoxStar.className = "text_star";
+                bigBoxStar.innerText = "\u2605";
+                bigBox.appendChild(bigBoxTitle);
+                bigBoxTitle.className = "text_title";
+                bigBoxTitle.appendChild(bigBoxTitleText);
+                bigBoxTitleText.className = "text_title_text";
+                bigBoxTitleText.innerText = spotList[dataCountForIpad];
+                dataCountForIpad += 1;
+              }
+            }
+          }
+          //手機畫面
+          let dataCountForPhone = dataCount;
+          let phoneModel = document.createElement("div");
+          phoneModel.className = "phone";
+          mainContent.appendChild(phoneModel);
+          for (i = dataCountForPhone; i < 13; i++) {
+            let bigBox = document.createElement("div");
+            let bigBoxStar = document.createElement("p");
+            let bigBoxTitle = document.createElement("div");
+            let bigBoxTitleText = document.createElement("p");
+            phoneModel.appendChild(bigBox);
+            bigBox.className = "big_box";
+            bigBox.style.backgroundImage = "url(" + imageList[i] + ")";
+            bigBox.appendChild(bigBoxStar);
+            bigBoxStar.className = "text_star";
+            bigBoxStar.innerText = "\u2605";
+            bigBox.appendChild(bigBoxTitle);
+            bigBoxTitle.className = "text_title";
+            bigBoxTitle.appendChild(bigBoxTitleText);
+            bigBoxTitleText.className = "text_title_text";
+            bigBoxTitleText.innerText = spotList[i];
+            dataCountForPhone += 1;
+          }
+        });
+    </script>
+  </body>
+</html>
