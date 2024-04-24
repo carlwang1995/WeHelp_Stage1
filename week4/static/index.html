@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>第四周任務</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}" />
+  </head>
+  <body>
+    <header>
+      <p>歡迎光臨，請輸入帳號密碼</p>
+    </header>
+    <main>
+      <div class="title">登入系統</div>
+      <form id="form" action="/signin" method="post">
+        <div style="margin-top: 10px">
+          <label for="username" class="loginbox">帳號：</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            class="loginbox"
+            value=""
+          />
+        </div>
+        <div style="margin-top: 10px">
+          <label for="password" class="loginbox">密碼：</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="loginbox"
+            value=""
+          />
+        </div>
+        <div style="margin-top: 10px">
+          <label for="agree" class="loginbox">同意條款</label>
+          <input type="checkbox" name="agree" id="agree" class="loginbox" />
+        </div>
+        <button onclick="checkPolicy()">登入</button>
+      </form>
+
+      <hr style="margin: 50px 0px 50px 0px" />
+
+      <div class="title">計算正整數的平方</div>
+      <div style="margin-top: 20px; display: flex; justify-content: center">
+        <label for="square" class="loginbox">正整數：</label>
+        <input
+          type="text"
+          name="square"
+          id="square"
+          class="loginbox"
+          value=""
+        />
+      </div>
+      <div style="margin-top: 10px; display: flex; justify-content: center">
+        <a id="caculate" href=""
+          ><button onclick="checkNumber()">計算</button></a
+        >
+      </div>
+    </main>
+
+    <script>
+      let checkbox = document.querySelector("#agree");
+      let form = document.querySelector("#form");
+      let square = document.querySelector("#square");
+      let caculate = document.querySelector("#caculate");
+      function checkPolicy() {
+        if (!checkbox.checked) {
+          //「!」可以將Boolean的值反轉
+          alert("Please check the checkbox first");
+          form.action = "";
+        }
+      }
+      function checkNumber() {
+        if (square.value < 0 || isNaN(square.value) || square.value == "") {
+          alert("Please enter a positive number");
+          caculate.href = "";
+        } else if (square.value >= 0) {
+          caculate.href = "/square/" + square.value;
+        }
+      }
+    </script>
+  </body>
+</html>

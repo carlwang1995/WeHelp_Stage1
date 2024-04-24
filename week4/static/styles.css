@@ -1,0 +1,51 @@
+* {
+  font-family: sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 14, 41);
+  height: 100px;
+}
+
+header p {
+  color: white;
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.title {
+  margin: 40px 0px 10px 0px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginbox {
+  font-size: 20px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 5px 10px 5px 10px;
+  font-size: 15px;
+}
+
+.messages {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
