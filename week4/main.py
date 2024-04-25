@@ -51,7 +51,6 @@ async def get_error_page(request: Request, message):
 async def signOUT(request: Request):
     user = request.session.get("user")
     user["signed-in"] = False
-    print(user)
     return RedirectResponse("/")
 
 @app.get("/square/{square}",response_class=HTMLResponse)
