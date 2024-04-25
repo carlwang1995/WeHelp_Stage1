@@ -12,9 +12,9 @@
     </header>
     <main>
       <div class="title">登入系統</div>
-      <form id="form" action="/signin" method="post">
+      <form action="/signin" method="post">
         <div style="margin-top: 10px">
-          <label for="username" class="loginbox">帳號：</label>
+          <label id="username" for="username" class="loginbox">帳號：</label>
           <input
             type="text"
             name="username"
@@ -24,7 +24,7 @@
           />
         </div>
         <div style="margin-top: 10px">
-          <label for="password" class="loginbox">密碼：</label>
+          <label id="password" for="password" class="loginbox">密碼：</label>
           <input
             type="password"
             name="password"
@@ -37,7 +37,9 @@
           <label for="agree" class="loginbox">同意條款</label>
           <input type="checkbox" name="agree" id="agree" class="loginbox" />
         </div>
-        <button onclick="checkPolicy()">登入</button>
+        <button id="loginButton" type="submit" onclick="checkPolicy()">
+          登入
+        </button>
       </form>
 
       <hr style="margin: 50px 0px 50px 0px" />
@@ -62,14 +64,16 @@
 
     <script>
       let checkbox = document.querySelector("#agree");
-      let form = document.querySelector("#form");
+      let loginButton = document.querySelector("#loginButton");
       let square = document.querySelector("#square");
       let caculate = document.querySelector("#caculate");
       function checkPolicy() {
         if (!checkbox.checked) {
           //「!」可以將Boolean的值反轉
+          loginButton.type = "button";
           alert("Please check the checkbox first");
-          form.action = "";
+        } else {
+          loginButton.type = "submit";
         }
       }
       function checkNumber() {
