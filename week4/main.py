@@ -20,12 +20,6 @@ async def read_item(request: Request):
         request=request, name="index.html"
     )
 
-# @app.post("/", response_class=HTMLResponse)
-# async def read_item(request: Request):
-#     return templates.TemplateResponse(
-#         request=request, name="index.html"
-#     )
-
 @app.post("/signin", response_class=RedirectResponse)
 async def signIN(request:Request, username: Annotated[str, Form()] = "none", password: Annotated[str, Form()] = "none"):
     user = {"username":username, "password":password, "signed-in":False}
