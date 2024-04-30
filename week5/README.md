@@ -54,23 +54,63 @@
   ```
 <img src="./Screenshot/TASK 3/TASK3-8.jpg">上圖：TASK3-8</img>
 ## TASK 4
-- SELECT COUNT(*) FROM \`member\`;
+- ```SQL
+  SELECT COUNT(*) FROM `member`;
+  ```
 <img src="./Screenshot/TASK 4/TASK4-1.jpg">上圖：TASK4-1</img>
-- SELECT SUM(\`follower_count\`) FROM \`member\`;
+- ```SQL
+  SELECT SUM(`follower_count`) FROM `member`;
+  ```
 <img src="./Screenshot/TASK 4/TASK4-2.jpg">上圖：TASK4-2</img>
-- SELECT AVG(\`follower_count\`) FROM \`member\`;
+- ```SQL
+  SELECT AVG(`follower_count`) FROM `member`;
+  ```
 <img src="./Screenshot/TASK 4/TASK4-3.jpg">上圖：TASK4-3</img>
-- SELECT AVG(\`follower_count\`) FROM (SELECT \`follower_count\` FROM \`member\` ORDER BY \`follower_count\` DESC LIMIT 2) AS \`subquery_alias\`;
+- ```SQL
+  SELECT AVG(`follower_count`) FROM (
+    SELECT `follower_count`
+    FROM `member`
+    ORDER BY `follower_count` DESC
+    LIMIT 2) AS `subquery_alias`;
+  ```
 <img src="./Screenshot/TASK 4/TASK4-4.jpg">上圖：TASK4-4</img>
 ## TASK 5
-- CREATE TABLE \`message\`(<br>　\`id\` BIGINT PRIMARY KEY AUTO_INCREMENT,<br>　\`member_id\` BIGINT NOT NULL,<br>　\`content\` VARCHAR(255) NOT NULL,<br>　\`like_count\` INT UNSIGNED NOT NULL DEFAULT 0,<br>　\`time\` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,<br>　FOREIGN KEY(\`member_id\`) REFERENCES \`member\`(\`id\`) ON DELETE CASCADE<br>);<br>
-DESCRIBE \`message\`;
+- ```SQL
+  CREATE TABLE `message`(
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `member_id` BIGINT NOT NULL,
+    `content` VARCHAR(255) NOT NULL,
+    `like_count` INT UNSIGNED NOT NULL DEFAULT 0,
+    `time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(`member_id`) REFERENCES `member`(`id`) ON DELETE CASCADE
+  );
+  DESCRIBE `message`;
+  ```
 <img src="./Screenshot/TASK 5/TASK5-1.jpg">上圖：TASK5-1</img>
-- SELECT \`message\`.*, \`member\`.\`name\` FROM \`message\` JOIN \`member\` ON \`message\`.\`member_id\` = \`member\`.\`id\` ;
+- ```SQL
+  SELECT `message`.*, `member`.`name`
+  FROM `message`
+  JOIN `member` ON `message`.`member_id` = `member`.`id` ;
+  ```
 <img src="./Screenshot/TASK 5/TASK5-2.jpg">上圖：TASK5-2</img>
-- SELECT \`message\`.*, \`member\`.\`name\` FROM \`message\` JOIN \`member\` ON \`message\`.\`member_id\` = \`member\`.\`id\` WHERE \`member\`.\`username\` = "test";
+- ```SQL
+  SELECT `message`.*, `member`.`name`
+  FROM `message`
+  JOIN `member` ON `message`.`member_id` = `member`.`id`
+  WHERE `member`.`username` = "test";
+  ```
 <img src="./Screenshot/TASK 5/TASK5-3.jpg">上圖：TASK5-3</img>
-- SELECT AVG(\`like_count\`) FROM \`message\` JOIN \`member\` ON \`message\`.\`member_id\` = \`member\`.\`id\` WHERE \`member\`.\`username\` = "test";
+- ```SQL
+  SELECT AVG(`like_count`)
+  FROM `message`
+  JOIN `member` ON `message`.`member_id` = `member`.`id`
+  WHERE `member`.`username` = "test";
+  ```
 <img src="./Screenshot/TASK 5/TASK5-4.jpg">上圖：TASK5-4</img>
-- SELECT AVG(\`like_count\`) FROM \`message\` JOIN \`member\` ON \`message\`.\`member_id\` = \`member\`.\`id\` GROUP BY \`member\`.\`username\`;
+- ```SQL
+  SELECT AVG(`like_count`)
+  FROM `message`
+  JOIN `member` ON `message`.`member_id` = `member`.`id`
+  GROUP BY `member`.`username`;
+  ```
 <img src="./Screenshot/TASK 5/TASK5-5.jpg">上圖：TASK5-5</img>
