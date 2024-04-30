@@ -67,11 +67,13 @@
   ```
 <img src="./Screenshot/TASK 4/TASK4-3.jpg">上圖：TASK4-3</img>
 - ```SQL
-  SELECT AVG(`follower_count`) FROM (
+  SELECT AVG(`follower_count`)
+  FROM (
     SELECT `follower_count`
     FROM `member`
     ORDER BY `follower_count` DESC
-    LIMIT 2) AS `subquery_alias`;
+    LIMIT 2
+  ) AS `subquery_alias`;
   ```
 <img src="./Screenshot/TASK 4/TASK4-4.jpg">上圖：TASK4-4</img>
 ## TASK 5
