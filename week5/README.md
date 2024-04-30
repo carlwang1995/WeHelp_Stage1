@@ -21,4 +21,12 @@
 - UPDATE \`member\` SET \`name\` = "test2" WHERE \`username\` = "test";
 <img src="./Screenshot/TASK 3/TASK3-8.jpg">上圖：TASK3-8</img>
 ## TASK 4
+- SELECT COUNT(*) FROM \`member\`;
+<img src="./Screenshot/TASK 4/TASK4-1.jpg">上圖：TASK4-1</img>
+- SELECT SUM(\`follower_count\`) FROM \`member\`;
+<img src="./Screenshot/TASK 4/TASK4-2.jpg">上圖：TASK4-2</img>
+- SELECT AVG(\`follower_count\`) FROM \`member\`;
+<img src="./Screenshot/TASK 4/TASK4-3.jpg">上圖：TASK4-3</img>
+- SELECT AVG(\`follower_count\`) FROM (SELECT \`follower_count\` FROM \`member\` ORDER BY \`follower_count\` DESC LIMIT 2) AS \`subquery_alias\`;
+<img src="./Screenshot/TASK 4/TASK4-4.jpg">上圖：TASK4-4</img>
 ## TASK 5
