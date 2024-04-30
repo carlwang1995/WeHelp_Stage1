@@ -47,6 +47,7 @@
 - ```SQL
   --4/30 22:00 新增簡化寫法：
   SELECT * FROM `member` WHERE LOCATE("es",`name`) >0 ;
+  SELECT * FROM `member` WHERE INSTR(`name`,"es") >0 ;
   ```
 <img src="./Screenshot/TASK 3/TASK3-6.jpg">上圖：TASK3-6</img>
 - ```SQL
