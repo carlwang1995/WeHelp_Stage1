@@ -44,6 +44,10 @@
 - ```SQL
   SELECT * FROM `member` WHERE `name` LIKE "%es%" OR "es%" OR "%es";
   ```
+- ```SQL
+  --4/30 22:00 新增簡化寫法：
+  SELECT * FROM `member` WHERE LOCATE("es",`name`) >0 ;
+  ```
 <img src="./Screenshot/TASK 3/TASK3-6.jpg">上圖：TASK3-6</img>
 - ```SQL
   SELECT * FROM `member` WHERE `username` = "test" AND `password` = "test";
