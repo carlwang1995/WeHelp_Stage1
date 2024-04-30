@@ -30,5 +30,5 @@
 - SELECT AVG(\`follower_count\`) FROM (SELECT \`follower_count\` FROM \`member\` ORDER BY \`follower_count\` DESC LIMIT 2) AS \`subquery_alias\`;
 <img src="./Screenshot/TASK 4/TASK4-4.jpg">上圖：TASK4-4</img>
 ## TASK 5
-- CREATE TABLE \`message\`(\`id\` BIGINT PRIMARY KEY AUTO_INCREMENT, \`member_id\` BIGINT NOT NULL, \`content\` VARCHAR(255) NOT NULL, \`like_count\` INT UNSIGNED NOT NULL DEFAULT 0, \`time\` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(\`member_id\`) REFERENCES \`member\`(\`id\`) ON DELETE CASCADE);<br>DESCRIBE \`message\`;
+- CREATE TABLE \`message\`(<br>　\`id\` BIGINT PRIMARY KEY AUTO_INCREMENT,<br>　\`member_id\` BIGINT NOT NULL,<br>　\`content\` VARCHAR(255) NOT NULL,<br>　\`like_count\` INT UNSIGNED NOT NULL DEFAULT 0,<br>　\`time\` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,<br>　FOREIGN KEY(\`member_id\`) REFERENCES \`member\`(\`id\`) ON DELETE CASCADE<br>);<br>DESCRIBE \`message\`;
 <img src="./Screenshot/TASK 5/TASK5-1.jpg">上圖：TASK5-1</img>
