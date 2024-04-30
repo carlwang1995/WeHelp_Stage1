@@ -1,5 +1,7 @@
 ## TASK 2
-- CREATE DATABASE \`website\`;
+- ```SQL
+  CREATE DATABASE \`website\`;
+  ```
 <img src="./Screenshot/TASK 2/TASK2-1.jpg">上圖：TASK2-1</img>
 - USE \`website\`;<br>CREATE TABLE \`member\`(<br>　\`id\` BIGINT PRIMARY KEY AUTO_INCREMENT,<br>　\`name\` VARCHAR(255) NOT NULL,<br>　\`username\` VARCHAR(255) NOT NULL,<br>　\`password\` VARCHAR(255) NOT  NULL,<br>　\`follower_count\` INT UNSIGNED NOT NULL DEFAULT 0,<br>　\`time\` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP<br>);<br>DESCRIBE \`member\`;
 <img src="./Screenshot/TASK 2/TASK2-2.jpg">上圖：TASK2-2</img>
