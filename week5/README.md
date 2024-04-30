@@ -30,6 +30,15 @@
 - SELECT AVG(\`follower_count\`) FROM (SELECT \`follower_count\` FROM \`member\` ORDER BY \`follower_count\` DESC LIMIT 2) AS \`subquery_alias\`;
 <img src="./Screenshot/TASK 4/TASK4-4.jpg">上圖：TASK4-4</img>
 ## TASK 5
-- CREATE TABLE \`message\`(<br>　\`id\` BIGINT PRIMARY KEY AUTO_INCREMENT,<br>　\`member_id\` BIGINT NOT NULL,<br>　\`content\` VARCHAR(255) NOT NULL,<br>　\`like_count\` INT UNSIGNED NOT NULL DEFAULT 0,<br>　\`time\` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,<br>　FOREIGN KEY(\`member_id\`) REFERENCES \`member\`(\`id\`) ON DELETE CASCADE<br>);<br>DESCRIBE \`message\`;<br>
-INSERT INTO \`message\`(\`member_id\`,\`content\`, \`like_count\`) VALUES(5,"美食評論",10),(4,"景點評論",30),(3,"電影評論",50),(2,"遊戲評論",40),(1,"3C產品評論",60);
+- CREATE TABLE \`message\`(<br>　\`id\` BIGINT PRIMARY KEY AUTO_INCREMENT,<br>　\`member_id\` BIGINT NOT NULL,<br>　\`content\` VARCHAR(255) NOT NULL,<br>　\`like_count\` INT UNSIGNED NOT NULL DEFAULT 0,<br>　\`time\` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,<br>　FOREIGN KEY(\`member_id\`) REFERENCES \`member\`(\`id\`) ON DELETE CASCADE<br>);<br>
+INSERT INTO \`message\`(\`member_id\`,\`content\`, \`like_count\`) VALUES(5,"美食評論",10),(4,"景點評論",30),(3,"電影評論",50),(2,"遊戲評論",40),(1,"3C產品評論",60);<br>
+DESCRIBE \`message\`;
 <img src="./Screenshot/TASK 5/TASK5-1.jpg">上圖：TASK5-1</img>
+- SELECT \`message\`.*, \`member\`.\`name\` FROM \`message\` JOIN \`member\` ON \`message\`.\`member_id\` = \`member\`.\`id\` ;
+<img src="./Screenshot/TASK 5/TASK5-2.jpg">上圖：TASK5-2</img>
+- SELECT \`message\`.*, \`member\`.\`name\` FROM \`message\` JOIN \`member\` ON \`message\`.\`member_id\` = \`member\`.\`id\` WHERE \`member\`.\`username\` = "test";
+<img src="./Screenshot/TASK 5/TASK5-3.jpg">上圖：TASK5-3</img>
+- SELECT AVG(\`like_count\`) FROM \`message\` JOIN \`member\` ON \`message\`.\`member_id\` = \`member\`.\`id\` WHERE \`member\`.\`username\` = "test";
+<img src="./Screenshot/TASK 5/TASK5-4.jpg">上圖：TASK5-4</img>
+- SELECT AVG(\`like_count\`) FROM \`message\` JOIN \`member\` ON \`message\`.\`member_id\` = \`member\`.\`id\` GROUP BY \`member\`.\`username\`;
+<img src="./Screenshot/TASK 5/TASK5-5.jpg">上圖：TASK5-5</img>
