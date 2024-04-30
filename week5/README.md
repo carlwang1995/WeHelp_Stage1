@@ -10,21 +10,40 @@
   ```
 <img src="./Screenshot/TASK 2/TASK2-2.jpg">上圖：TASK2-2</img>
 ## TASK 3
-- INSERT INTO \`member\`(\`name\`,\`username\`,\`password\`,\`follower_count\`) VALUES("test","test","test", 0);<br>INSERT INTO \`member\`(\`name\`,\`username\`,\`password\`,\`follower_count\`) VALUES("小明","user001","123456", 500); <br>INSERT INTO \`member\`(\`name\`,\`username\`,\`password\`,\`follower_count\`) VALUES("小美","user002","321123", 1000);<br>INSERT INTO \`member\`(\`name\`,\`username\`,\`password\`,\`follower_count\`) VALUES("小白","user003","11112222", 1200);<br>INSERT INTO \`member\`(\`name\`,\`username\`,\`password\`,\`follower_count\`) VALUES("小黑","user004","22221111", 800);
+- ```SQL
+  INSERT INTO `member`(`name`,`username`,`password`,`follower_count`) VALUES("test","test","test", 0);
+  INSERT INTO `member`(`name`,`username`,`password`,`follower_count`) VALUES("小明","user001","123456", 500); 
+  INSERT INTO `member`(`name`,`username`,`password`,`follower_count`) VALUES("小美","user002","321123", 1000);
+  INSERT INTO `member`(`name`,`username`,`password`,`follower_count`) VALUES("小白","user003","11112222", 1200);
+  INSERT INTO `member`(`name`,`username`,`password`,`follower_count`) VALUES("小黑","user004","22221111", 800);```
 <img src="./Screenshot/TASK 3/TASK3-1.jpg">上圖：TASK3-1</img>
-- SELECT * FROM \`member\`;
+- ```SQL
+  SELECT * FROM `member`;
+  ```
 <img src="./Screenshot/TASK 3/TASK3-2.jpg">上圖：TASK3-2</img>
-- SELECT * FROM \`member\` ORDER BY \`time\` DESC;
+- ```SQL
+  SELECT * FROM `member` ORDER BY `time` DESC;
+  ```
 <img src="./Screenshot/TASK 3/TASK3-3.jpg">上圖：TASK3-3</img>
-- SELECT * FROM \`member\` ORDER BY \`time\` DESC LIMIT 1,3;
+- ```SQL
+  SELECT * FROM `member` ORDER BY `time` DESC LIMIT 1,3;
+  ```
 <img src="./Screenshot/TASK 3/TASK3-4.jpg">上圖：TASK3-4</img>
-- SELECT * FROM \`member\` WHERE \`username\` = "test";
+- ```SQL
+  SELECT * FROM `member` WHERE `username` = "test";
+  ```
 <img src="./Screenshot/TASK 3/TASK3-5.jpg">上圖：TASK3-5</img>
-- SELECT * FROM \`member\` WHERE \`name\` LIKE "%es%" OR "es%" OR "%es";
+- ```SQL
+  SELECT * FROM `member` WHERE `name` LIKE "%es%" OR "es%" OR "%es";
+  ```
 <img src="./Screenshot/TASK 3/TASK3-6.jpg">上圖：TASK3-6</img>
-- SELECT * FROM \`member\` WHERE \`username\` = "test" AND \`password\` = "test";
+- ```SQL
+  SELECT * FROM `member` WHERE `username` = "test" AND `password` = "test";
+  ```
 <img src="./Screenshot/TASK 3/TASK3-7.jpg">上圖：TASK3-7</img>
-- UPDATE \`member\` SET \`name\` = "test2" WHERE \`username\` = "test";
+- ```SQL
+  UPDATE `member` SET `name` = "test2" WHERE `username` = "test";
+  ```
 <img src="./Screenshot/TASK 3/TASK3-8.jpg">上圖：TASK3-8</img>
 ## TASK 4
 - SELECT COUNT(*) FROM \`member\`;
