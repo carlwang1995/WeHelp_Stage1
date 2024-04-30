@@ -1,5 +1,5 @@
 ## TASK 2
-- CREATE DATABASE `website`;
+- CREATE DATABASE website;
 
 ## TASK 3
 ## TASK 4
