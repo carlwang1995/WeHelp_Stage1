@@ -42,7 +42,7 @@
   ```
 <img src="./Screenshot/TASK 3/TASK3-5.jpg">上圖：TASK3-5</img>
 - ```SQL
-  SELECT * FROM `member` WHERE `name` LIKE "%es%" OR "es%" OR "%es";
+  SELECT * FROM `member` WHERE `name` LIKE "%es%";
   ```
 - ```SQL
   --4/30 22:00 新增簡化寫法：
