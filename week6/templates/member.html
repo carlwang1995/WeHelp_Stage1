@@ -31,9 +31,7 @@
       let deleteBtn = document.querySelectorAll("button.delete");
       deleteBtn.forEach((e) =>
         e.addEventListener("click", (n) => {
-          if (confirm("你確定要刪除留言?") == true) {
-            console.log("確認");
-          } else {
+          if (confirm("你確定要刪除留言?") == false) {
             n.preventDefault();
           }
         })
