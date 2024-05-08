@@ -106,9 +106,9 @@ async def comment(request:Request, content:Annotated[str, Form()] = "none"):
 #刪除留言
 @app.post("/deleteMessage", response_class=RedirectResponse)
 async def delete_comment(id:Annotated[str, Form()]):
-    member_id = id
+    message_id = id
     sql = ("DELETE FROM `message` WHERE `id` = %s")
-    mycursor.execute(sql, [member_id])
+    mycursor.execute(sql, [message_id])
     mydb.commit()
     return RedirectResponse("/member",status_code=303,)
 
