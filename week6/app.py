@@ -105,11 +105,20 @@ async def comment(request:Request, content:Annotated[str, Form()] = "none"):
     return RedirectResponse("/member",status_code=303,)
 #刪除留言
 @app.post("/deleteMessage", response_class=RedirectResponse)
-async def delete_comment(id:Annotated[str, Form()]):
+async def delete_comment(request:Request,id:Annotated[str, Form()]):
     message_id = id
-    sql = ("DELETE FROM `message` WHERE `id` = %s")
-    mycursor.execute(sql, [message_id])
-    mydb.commit()
+    sql1 = ("SELECT `id`,`member_id` FROM `message` WHERE `id` = %s;")
+    mycursor.execute(sql1, [message_id])
+    myresult = mycursor.fetchall()
+    member_id = myresult[0][1]
+    
+    current_user = request.session.get("user")
+
+    sql2 = ("DELETE FROM `message` WHERE `id` = %s")
+    
+    if member_id == current_user["id"] :
+        mycursor.execute(sql2, [message_id])
+        mydb.commit()
     return RedirectResponse("/member",status_code=303,)
 
 # 登入失敗
