@@ -30,14 +30,13 @@ async def read_item(request: Request):
 
 # 註冊帳號
 @app.post("/signup", response_class=RedirectResponse)
-async def signUP(name: Annotated[str, Form()],username: Annotated[str, Form()] = "none", password: Annotated[str, Form()] = "none"):
-    mycursor.execute("SELECT `username` FROM `member`;")
-    myresult = list(mycursor)
-    username_list = []
-    for r in myresult:
-        username_list.append(r[0])
-    if username in username_list:
-        return RedirectResponse("/error?message=帳號已重複", status_code=303)
+async def signUP(name: Annotated[str, Form()], username: Annotated[str, Form()] = "none", password: Annotated[str, Form()] = "none"):
+    sql = ("SELECT `username` FROM `member` WHERE `username` = %s;")
+    mycursor.execute(sql, [username])
+    username_check = mycursor.fetchall()
+
+    if username_check != []:
+        return RedirectResponse("/error?message=帳號已被註冊", status_code=303)
     else:
         sql = ("INSERT INTO `member`(`name`, `username`, `password`) VALUES(%s, %s, %s);")
         val = (name, username, password)
@@ -48,21 +47,16 @@ async def signUP(name: Annotated[str, Form()],username: Annotated[str, Form()] =
 # 登入帳號
 @app.post("/signin", response_class=RedirectResponse)
 async def signIN(request: Request, username: Annotated[str, Form()] = "none", password: Annotated[str, Form()] = "none"):
-    mycursor.execute("SELECT `username` FROM `member`;")
-    myresult = mycursor.fetchall()
-    username_list =[]
-    for r in myresult:
-        username_list.append(r[0])
-    sql = ("SELECT `id`,`name`,`password` FROM `member` WHERE `username` = %s;")
-   
-    if username in username_list:
-        mycursor.execute(sql, [username])
-        myresult = mycursor.fetchall()[0]
-        current_user = {"id":"","name":"","username":username, "signed-in":False}
+    current_user = {"id":"","name":"","username":username, "signed-in":False}
+    
+    val = (username, password)
+    sql = ("SELECT `id`,`name` FROM `member` WHERE `username` = %s AND `password` = %s")
+    mycursor.execute(sql, val)
+    user_check = mycursor.fetchall()
 
-    if password == myresult[2]:
-        current_user["id"] = myresult[0]
-        current_user["name"] = myresult[1]
+    if user_check != []:
+        current_user["id"] = user_check[0][0]
+        current_user["name"] = user_check[0][1]
         current_user["signed-in"] = True
         request.session["user"] = current_user
         return RedirectResponse("/member",status_code=303)
@@ -95,11 +89,11 @@ async def allow(request: Request):
 @app.post("/createMessage", response_class=RedirectResponse)
 async def comment(request:Request, content:Annotated[str, Form()] = "none"):
     currnet_id = request.session.get("user")["id"]
-    sql = ("INSERT INTO `message`(`member_id`, `content`) VALUES(%s, %s)")
     text = content
     if content == "none":
-        text = ""
+        text = ""   
     val = (currnet_id, text)
+    sql = ("INSERT INTO `message`(`member_id`, `content`) VALUES(%s, %s)")
     mycursor.execute(sql, val)
     mydb.commit()
     return RedirectResponse("/member",status_code=303,)
@@ -107,17 +101,16 @@ async def comment(request:Request, content:Annotated[str, Form()] = "none"):
 @app.post("/deleteMessage", response_class=RedirectResponse)
 async def delete_comment(request:Request,id:Annotated[str, Form()]):
     message_id = id
-    sql1 = ("SELECT `id`,`member_id` FROM `message` WHERE `id` = %s;")
-    mycursor.execute(sql1, [message_id])
+    sql = ("SELECT `id`,`member_id` FROM `message` WHERE `id` = %s;")
+    mycursor.execute(sql, [message_id])
     myresult = mycursor.fetchall()
-    member_id = myresult[0][1]
     
+    member_id = myresult[0][1]
     current_user = request.session.get("user")
-
-    sql2 = ("DELETE FROM `message` WHERE `id` = %s")
     
     if member_id == current_user["id"] :
-        mycursor.execute(sql2, [message_id])
+        sql = ("DELETE FROM `message` WHERE `id` = %s")
+        mycursor.execute(sql, [message_id])
         mydb.commit()
     return RedirectResponse("/member",status_code=303,)
 
