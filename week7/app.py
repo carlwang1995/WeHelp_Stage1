@@ -75,7 +75,7 @@ async def allow(request: Request):
     content = ""
     for r in myresult:
         if current_user["id"] == r[1]:
-            content += "<div class='message'><form action='/deleteMessage' method='post'><p class='bolder'>"+ r[2]+"："+"</p>"+"<p>"+ r[3]+"</p><button class='delete' name='id' value="+str(r[0])+">&#10005;</button></form></div>"
+            content += "<div class='message'><form action='/deleteMessage' method='post'><p class='bolder_real'>"+ r[2]+"："+"</p>"+"<p>"+ r[3]+"</p><button class='delete' name='id' value="+str(r[0])+">&#10005;</button></form></div>"
         else:
             content += "<div class='message'><p class='bolder'>"+ r[2]+"："+"</p>"+"<p>"+ r[3]+"</p></div>"
 

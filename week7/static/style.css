@@ -52,6 +52,10 @@ main div.input p.bolder {
   font-size: 25px;
   font-weight: bolder;
 }
+main div.input p.bolder_real {
+  font-size: 25px;
+  font-weight: bolder;
+}
 main div.input div.message {
   display: flex;
 }
