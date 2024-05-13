@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}" />
+    <title>Week6_HOME</title>
+  </head>
+  <body>
+    <header>
+      <h1>歡迎光臨，請註冊登入系統</h1>
+    </header>
+    <main>
+      <div class="input">
+        <h2>註冊帳號</h2>
+        <form action="/signup" method="post">
+          <div>
+            <label for="name">姓名</label>
+            <input type="text" name="name" id="name" />
+          </div>
+          <div>
+            <label for="username">帳號</label>
+            <input type="text" name="username" id="signup-username" />
+          </div>
+          <div>
+            <label for="password">密碼</label>
+            <input type="password" name="password" id="signup-password" />
+          </div>
+          <button id="signup">註冊</button>
+        </form>
+      </div>
+      <hr />
+      <div class="input">
+        <h2>登入系統</h2>
+        <form action="/signin" method="post">
+          <div>
+            <label for="username">帳號</label>
+            <input type="text" name="username" id="signin-username" />
+          </div>
+          <div>
+            <label for="password">密碼</label>
+            <input type="password" name="password" id="signin-password" />
+          </div>
+          <button id="signin">登入</button>
+        </form>
+      </div>
+    </main>
+    <script>
+      let signupName = document.querySelector("#name");
+      let signupUsername = document.querySelector("#signup-username");
+      let signupPassword = document.querySelector("#signup-password");
+      let signupBtn = document.querySelector("button#signup");
+
+      let signinUsername = document.querySelector("#signin-username");
+      let signinPassword = document.querySelector("#signin-password");
+      let signinBtn = document.querySelector("button#signin");
+
+      signupBtn.addEventListener("click", (e) => {
+        if (
+          signupName.value == "" ||
+          signupUsername.value == "" ||
+          signupPassword.value == ""
+        ) {
+          alert("請輸入註冊姓名/帳號/密碼");
+          e.preventDefault();
+        }
+      });
+
+      signinBtn.addEventListener("click", (e) => {
+        if (signinUsername.value == "" || signinPassword.value == "") {
+          alert("請輸入帳號、密碼");
+          e.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html>
