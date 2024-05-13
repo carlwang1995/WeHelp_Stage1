@@ -172,6 +172,7 @@ async def updateName(request:Request,name:Name):
         try:
             current_id = current_user["id"]
             new_name = jsonable_encoder(name)["name"]
+            current_user["name"] = new_name
             sql = ("UPDATE `member` SET `name`=%s WHERE `id` =%s")
             val = (new_name, current_id)
             mycursor.execute(sql, val)
